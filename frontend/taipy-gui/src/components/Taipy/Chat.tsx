@@ -37,6 +37,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Send from "@mui/icons-material/Send";
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 import { createRequestInfiniteTableUpdateAction, createSendActionNameAction } from "../../context/taipyReducers";
 import { TaipyActiveProps, disableColor, getSuffixedClassNames } from "./utils";
@@ -280,6 +281,8 @@ const Chat = (props: ChatProps) => {
         [updateVarName, onAction, senderId, id, dispatch, module]
     );
 
+    const handleShare = () => {};
+
     const avatars = useMemo(() => {
         return users.reduce((pv, elt) => {
             if (elt.id) {
@@ -452,6 +455,18 @@ const Chat = (props: ChatProps) => {
                         onKeyDown={handleAction}
                         slotProps={{
                             input: {
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <IconButton
+                                            aria-label="share"
+                                            edge="start"
+                                            onClick={handleShare}
+                                            disabled={!active}
+                                        >
+                                            <AttachFileIcon color={disableColor("primary", !active)} />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton
